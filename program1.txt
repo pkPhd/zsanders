@@ -1,0 +1,63 @@
+import 'package:flutter/material.dart';
+
+void main() => runApp(MyApp());
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Licznik',
+      home: LicznikStrona(),
+    );
+  }
+}
+
+class LicznikStrona extends StatefulWidget {
+  @override
+  _LicznikStronaState createState() => _LicznikStronaState();
+}
+
+class _LicznikStronaState extends State<LicznikStrona> {
+  int licznik = 0;
+
+  void dodaj() {
+    setState(() {
+      licznik++;
+    });
+  }
+
+  void resetuj() {
+    setState(() {
+      licznik = 0;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Mój pierwszy licznik'),
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text('Kliknięcia:', style: TextStyle(fontSize: 24)),
+            Text('$licznik', style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold)),
+            SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: dodaj,
+              child: Text('Dodaj'),
+            ),
+            SizedBox(height: 10),
+            ElevatedButton(
+              onPressed: resetuj,
+              child: Text('Resetuj'),
+              style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
